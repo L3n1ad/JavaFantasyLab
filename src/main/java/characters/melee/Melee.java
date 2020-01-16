@@ -11,8 +11,8 @@ public abstract class Melee extends Being {
     private ArrayList<Weapon> weapons;
     private Weapon selectedWeapon;
 
-    public Melee(String name, int maxHealth, int currentHealth) {
-        super(name, maxHealth, currentHealth);
+    public Melee(String name, int maxHealth) {
+        super(name, maxHealth);
         this.weapons = new ArrayList<Weapon>();
         this.selectedWeapon = null;
     }
@@ -23,5 +23,17 @@ public abstract class Melee extends Being {
 
     public Weapon getSelectedWeapon() {
         return selectedWeapon;
+    }
+
+    public void attack(Being target){
+        target.decreaseHealth(selectedWeapon.getDamage());
+    }
+
+    public void addWeaponToWeapons(Weapon weapon){
+        weapons.add(weapon);
+    }
+
+    public void changeSelectedWeapon(Weapon weapon){
+        selectedWeapon = weapon;
     }
 }

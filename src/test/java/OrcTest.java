@@ -11,8 +11,8 @@ public class OrcTest {
 
     @Before
     public void before(){
-        orc = new Orc("Orc", 5, 5, 1, 1);
-        orc1 = new Orc("Orc", 5, 5, 1,1 );
+        orc = new Orc("Orc", 5, 1, 1);
+        orc1 = new Orc("Orc", 5, 1, 1 );
     }
 
     @Test

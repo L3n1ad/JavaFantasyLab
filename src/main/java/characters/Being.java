@@ -6,10 +6,10 @@ public abstract class Being {
     protected int maxHealth;
     protected int currentHealth;
 
-    public Being(String name, int maxHealth, int currentHealth) {
+    public Being(String name, int maxHealth) {
         this.name = name;
         this.maxHealth = maxHealth;
-        this.currentHealth = currentHealth;
+        this.currentHealth = maxHealth;
     }
 
     public String getName() {

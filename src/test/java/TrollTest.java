@@ -12,8 +12,8 @@ public class TrollTest {
 
     @Before
     public void before(){
-        troll = new Troll("Troll", 5, 5, 1, 1);
-        troll1 = new Troll("Troll", 5, 5, 1,1 );
+        troll = new Troll("Troll", 5, 1, 1);
+        troll1 = new Troll("Troll", 5, 1, 1);
     }
 
     @Test
