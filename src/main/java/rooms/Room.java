@@ -44,13 +44,15 @@ public class Room {
         this.player = player;
     }
 
-
+//Here would make sense to implement an interface called
+//IAttack and cast player into that
+//Also we would need to check instanceof every player
+//Then instance of enemies too
     public String fight() {
-        return "System out";
         while(player.getCurrentHealth() >=0 && enemy.getCurrentHealth() >=0){
             if(player.getCurrentHealth() >= 0){
-               if(player instanceof Knight){
-                   ((Knight)player).attack(((Orc)enemy));
+               if(player instanceof IAttack){
+                   ((IAttack)player).attack(enemy);
                }
             }
         }
