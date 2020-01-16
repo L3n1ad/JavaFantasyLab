@@ -7,8 +7,8 @@ public abstract class Enemy extends Being {
     protected int attackPower;
     protected int healPower;
 
-    public Enemy(String name, int health, int attackPower, int healPower) {
-        super(name, health);
+    public Enemy(String name, int maxHealth, int currentHealth, int attackPower, int healPower) {
+        super(name, maxHealth, currentHealth);
         this.attackPower = attackPower;
         this.healPower = healPower;
     }

@@ -25,10 +25,12 @@ public abstract class Being {
     }
 
     public void decreaseHealth(int value){
-        currenctHealth -= value;
+            currentHealth -= value;
     }
 
     public void increaseHealth(int value){
-        health += value;
+        if(currentHealth < maxHealth){
+            currentHealth += value;
+        }
     }
 }
