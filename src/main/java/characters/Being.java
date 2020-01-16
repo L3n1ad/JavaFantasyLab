@@ -1,5 +1,7 @@
 package characters;
 
+import items.HealingTools;
+
 public abstract class Being {
 
     protected String name;
@@ -29,8 +31,10 @@ public abstract class Being {
     }
 
     public void increaseHealth(int value){
-        if(currentHealth < maxHealth){
-            currentHealth += value;
-        }
+       if ((currentHealth + value) > maxHealth) {
+           currentHealth = maxHealth;
+       } else {
+           currentHealth += value;
+       }
     }
 }

@@ -1,5 +1,7 @@
 import characters.enemy.Orc;
 import characters.melee.Knight;
+import characters.spellCasters.FireWizard;
+import items.Staff;
 import items.Weapon;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +19,7 @@ public class KnightTest {
     public void before(){
         knight = new Knight("Arthur", 5);
         weapon1 = new Weapon("Sword", 3);
-        weapon2 = new Weapon("Axe", 2);
+        weapon2 = new Weapon("Sword", 3);
         orc = new Orc("Orc", 5, 1, 1);
 
     }
