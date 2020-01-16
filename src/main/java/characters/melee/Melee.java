@@ -34,6 +34,8 @@ public abstract class Melee extends Being {
     }
 
     public void changeSelectedWeapon(Weapon weapon){
-        selectedWeapon = weapon;
+        if(weapons.contains(weapon)){
+            selectedWeapon = weapon;
+        }
     }
 }

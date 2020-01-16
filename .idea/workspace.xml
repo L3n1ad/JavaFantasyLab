@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1734801c-1147-4941-905c-9dd2e083e89b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/KnightTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/characters/Being.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/characters/Being.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/characters/enemy/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/characters/enemy/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/characters/melee/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/characters/melee/Knight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/characters/melee/Melee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/characters/melee/Melee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/items/ActionItem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TrollTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TrollTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/KnightTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/KnightTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
