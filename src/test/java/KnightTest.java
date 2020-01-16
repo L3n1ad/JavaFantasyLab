@@ -56,7 +56,4 @@ public class KnightTest {
         knight.attack(orc);
         assertEquals(2, orc.getCurrentHealth());
     }
-
-
-
 }
