@@ -16,6 +16,7 @@ public abstract class Being {
         this.wallet = 0;
     }
 
+
     public String getName() {
         return name;
     }
