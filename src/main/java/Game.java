@@ -1,3 +1,4 @@
+import behavior.IAttack;
 import characters.Being;
 import characters.Healer;
 import characters.enemy.Enemy;
@@ -16,6 +17,37 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
+
+    private static Being fighter;
+    private static Enemy target;
+
+
+    public Game() {
+    }
+
+    public static Being chooseCharacter(ArrayList<Being> characters) {
+        fighter = null;
+        while (fighter == null) {
+            Scanner in = new Scanner(System.in);
+            System.out.println("Choose your character for the fight! Please type in their name");
+            System.out.println("1. Arthur");
+            System.out.println("2. Flaming John");
+            System.out.println("3. Healing Eugene");
+
+
+            String choosenCharacter = in.nextLine();
+            for (Being character : characters) {
+                String characterName = character.getName();
+                if (characterName.toString() == choosenCharacter.toString()) {
+                    fighter = character;
+                }
+            }q
+            if (fighter == null) {
+                System.out.println("Characters doesn't exist please try again");
+            }
+        }
+        return fighter;
+    }
 
     public static void main(String[] args) {
 //      system objectsD
@@ -68,7 +100,43 @@ public class Game {
         boolean running = true;
 
         while(running){
+            while(level1.getEnemies().size() > 0){
+                chooseCharacter(characters);
 
+                System.out.println("Choose your enemy! Please type in their name");
+                System.out.println("1. Stinky Gumal");
+                System.out.println("2. Minky Biggy");
+
+                String choosenEnemy = in.nextLine();
+                if(characters.contains(choosenEnemy)){
+                    for(Enemy enemy : enemiesLevel1){
+                        if(enemy.getName() == choosenEnemy){
+                            target = enemy;
+                        }
+                    }
+                } else {
+                    System.out.println("Enemy doesn't exist please try again");
+                }
+                if(fighter instanceof IAttack){
+                    ((IAttack) fighter).attack(target);
+                    if(target.getCurrentHealth() <= 0){
+                        level1.getEnemies().remove(target);
+                    }
+                }
+                if(level1.getEnemies().size() > 0){
+                    Enemy enemy = level1.getEnemies().get(0);
+                    enemy.attack(fighter);
+                    if(fighter.getCurrentHealth() <= 0){
+                        level1.getPlayers().remove(fighter);
+                    }
+                }
+                if(level1.getPlayers().size() == 0){
+                    System.out.println("You lost please try again");
+                    break;
+                }
+            }
+            System.out.println("You Won Congratulations");
+            running = false;
         }
 
     }
