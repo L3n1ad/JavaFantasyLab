@@ -1,5 +1,6 @@
 package characters.spellCasters;
 
+import behavior.IAttack;
 import characters.Being;
 import characters.enemy.Enemy;
 import items.Staff;
@@ -7,7 +8,7 @@ import items.Staff;
 
 import java.util.ArrayList;
 
-public class SpellCaster extends Being {
+public abstract class SpellCaster extends Being implements IAttack{
 
     private ArrayList<Staff> staffs;
     private Staff selectedStaff;
@@ -26,10 +27,8 @@ public class SpellCaster extends Being {
         return selectedStaff;
     }
 
-    public void attack(ArrayList<Enemy> enemies){
-        for(Enemy enemy : enemies){
-            enemy.decreaseHealth(selectedStaff.getDamage());
-        }
+    public void attack(Being target){
+            target.decreaseHealth(selectedStaff.getDamage());
     }
 
     public void addStaffToStaffs(Staff weapon){

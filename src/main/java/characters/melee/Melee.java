@@ -1,12 +1,14 @@
 package characters.melee;
 
 
+import behavior.IAttack;
 import characters.Being;
+import characters.enemy.Enemy;
 import items.Weapon;
 
 import java.util.ArrayList;
 
-public abstract class Melee extends Being {
+public abstract class Melee extends Being implements IAttack{
 
     private ArrayList<Weapon> weapons;
     private Weapon selectedWeapon;

@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1734801c-1147-4941-905c-9dd2e083e89b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/RoomTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/behavior/IAttack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/characters/Being.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/characters/Being.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/behavior/ISpell.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/behavior/ISwing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/characters/enemy/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/characters/enemy/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/characters/melee/Melee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/characters/melee/Melee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/characters/spellCasters/FireWizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/characters/spellCasters/FireWizard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/characters/spellCasters/SpellCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/characters/spellCasters/SpellCaster.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/rooms/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/treasure/Gold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/treasure/Gold.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/FireWizardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/FireWizardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/IceWizardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IceWizardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/RoomTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/RoomTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>

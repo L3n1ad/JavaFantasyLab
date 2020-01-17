@@ -61,8 +61,7 @@ public class IceWizardTest {
     public void canAttack(){
         wizard.addStaffToStaffs(staff1);
         wizard.changeSelectedStaff(staff1);
-        wizard.attack(enemies);
+        wizard.attack(orc);
         assertEquals(3, orc.getCurrentHealth());
-        assertEquals(3, troll.getCurrentHealth());
     }
 }

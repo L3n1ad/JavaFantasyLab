@@ -1,8 +1,9 @@
 package characters.enemy;
 
+import behavior.IAttack;
 import characters.Being;
 
-public abstract class Enemy extends Being {
+public class Enemy extends Being implements IAttack {
 
     protected int attackPower;
     protected int healPower;
@@ -28,4 +29,5 @@ public abstract class Enemy extends Being {
     public void healSelf(){
         increaseHealth(healPower);
     }
+
 }
