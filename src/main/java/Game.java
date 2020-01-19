@@ -175,26 +175,26 @@ public class Game {
     }
 
 
-    public static HealingTools randomPotionDrop(){
+    public static HealingTools randomPotionDrop(double chanceToDrop){
         HealingTools loot = null;
-        if(Math.random() > 0.1){
-            loot = new HealingTools("Piton of Earth", new Random().nextInt(40 + 1) + 20);
+        if(Math.random() > chanceToDrop){
+            loot = new HealingTools("Bite of Earth", new Random().nextInt(20 + 1) + 20);
         }
         return loot;
     }
 
-    public static Weapon randomWeaponDrop(){
+    public static Weapon randomWeaponDrop(double chanceToDrop){
         Weapon loot = null;
-        if(Math.random() > 0.1){
-            loot = new Weapon("Axe of Death", new Random().nextInt(50 + 1) + 25);
+        if(Math.random() > chanceToDrop){
+            loot = new Weapon("Axe of Death", new Random().nextInt(25 + 1) + 25);
         }
         return loot;
     }
 
-    public static Staff randomStaffDrop(){
+    public static Staff randomStaffDrop(double chanceToDrop){
         Staff loot = null;
-        if(Math.random() > 0.1){
-            loot = new Staff("Soul destroyer", new Random().nextInt(50 + 1) + 25);
+        if(Math.random() > chanceToDrop){
+            loot = new Staff("Soul destroyer", new Random().nextInt(10 + 1) + 25);
         }
         return loot;
     }
@@ -207,17 +207,17 @@ public class Game {
         Random rand = new Random();
 //      Game objects
         Knight knight = new Knight("Arthur", 100);
-        Weapon sword = new Weapon("Arthur's sword", 25);
+        Weapon sword = randomWeaponDrop(0);
         knight.addWeaponToWeapons(sword);
         knight.changeSelectedWeapon(sword);
         FireWizard fireWizard = new FireWizard("Flaming John", 100);
-        Staff fireStaff = new Staff("Burning Man's torch", 45);
+        Staff fireStaff = randomStaffDrop(0);
         fireWizard.addStaffToStaffs(fireStaff);
         fireWizard.changeSelectedStaff(fireStaff);
         Healer healer = new Healer("Healing Eugene", 100);
-        HealingTools potion1 = new HealingTools("Potion of Earth", 10);
-        HealingTools potion2 = new HealingTools("Potion of Earth", 10);
-        HealingTools potion3 = new HealingTools("Potion of Earth", 10);
+        HealingTools potion1 = randomPotionDrop(0);
+        HealingTools potion2 = randomPotionDrop(0);
+        HealingTools potion3 = randomPotionDrop(0);
         healer.addHealingItem(potion1);
         healer.addHealingItem(potion2);
         healer.addHealingItem(potion3);
@@ -226,8 +226,8 @@ public class Game {
         characters.add(fireWizard);
         characters.add(healer);
 //      LEVEL 1
-        Orc orc = new Orc("Stinky Gumal", 50, 25, 25);
-        Troll troll = new Troll("Minky Biggy", 50, 25,25);
+        Orc orc = new Orc("Stinky Gumal", 75, 25, 25);
+        Troll troll = new Troll("Minky Biggy", 75, 25,25);
         ArrayList<Enemy> enemiesLevel1 = new ArrayList<Enemy>();
         enemiesLevel1.add(orc);
         enemiesLevel1.add(troll);
@@ -274,7 +274,7 @@ public class Game {
                         if(target.getCurrentHealth() <= 0){
                             level1.getEnemies().remove(target);
                             System.out.println(target.getName() + " is destroyed, well done");
-                            Weapon loot = randomWeaponDrop();
+                            Weapon loot = randomWeaponDrop(0.5);
                             if(loot != null) {
                                 ((Melee) fighter).addWeaponToWeapons(loot);
                                 System.out.println(target.getName() + " dropped you something: " + loot.getName() + " with the damage of " + loot.getDamage());
@@ -289,7 +289,7 @@ public class Game {
                             if(enemy.getCurrentHealth() <= 0){
                                 enemiesLevel1.remove(enemy);
                                 System.out.println(enemy.getName() + " is destroyed, well done");
-                                Staff loot = randomStaffDrop();
+                                Staff loot = randomStaffDrop(0.5);
                                 if(loot != null) {
                                     ((SpellCaster) fighter).addStaffToStaffs(loot);
                                     System.out.println(enemy.getName() + " dropped you something: " + loot.getName() + " with the damage of " + loot.getDamage());
@@ -328,7 +328,7 @@ public class Game {
                     chooseTargetToHeal(characters);
                     ((Healer) fighter).heal(characterToHeal, item);
                     System.out.println("You healed " + characterToHeal.getName() + " to " + characterToHeal.getCurrentHealth());
-                    HealingTools loot = randomPotionDrop();
+                    HealingTools loot = randomPotionDrop(0.5);
                     if(loot != null){
                         ((Healer) fighter).addHealingItem(loot);
                         System.out.println("You got a drop: " + loot.getName() + " with healing power of " + loot.getPower());
