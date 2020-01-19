@@ -31,6 +31,12 @@ public abstract class SpellCaster extends Being implements IAttack{
             target.decreaseHealth(selectedStaff.getDamage());
     }
 
+    public void attackGroup(ArrayList<Enemy> enemies){
+        for(Enemy enemy : enemies){
+            attack(enemy);
+        }
+    }
+
     public void addStaffToStaffs(Staff weapon){
         staffs.add(weapon);
     }

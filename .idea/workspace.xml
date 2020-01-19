@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1734801c-1147-4941-905c-9dd2e083e89b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/behavior/IHeal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/behavior/IProtect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/characters/Being.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/characters/Being.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/characters/spellCasters/SpellCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/characters/spellCasters/SpellCaster.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,5 +105,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Game.java</url>
+          <line>286</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

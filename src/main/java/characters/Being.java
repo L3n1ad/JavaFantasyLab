@@ -7,13 +7,11 @@ public abstract class Being {
     protected String name;
     protected int maxHealth;
     protected int currentHealth;
-    protected int wallet;
 
     public Being(String name, int maxHealth) {
         this.name = name;
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
-        this.wallet = 0;
     }
 
 
@@ -39,14 +37,6 @@ public abstract class Being {
        } else {
            currentHealth += value;
        }
-    }
-
-    public int getWallet() {
-        return wallet;
-    }
-
-    public void increaseWallet(int value){
-        wallet += value;
     }
 
 }

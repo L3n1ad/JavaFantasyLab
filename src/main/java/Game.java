@@ -114,6 +114,91 @@ public class Game {
         return target;
     }
 
+    public static void chooseWeapon(Being fighter){
+        System.out.println("Choose your weapon from the following by typing its name!");
+        if(fighter instanceof Melee){
+            Weapon weapon = null;
+            while(weapon == null){
+                for(Weapon weaponOption : ((Melee) fighter).getWeapons()){
+                    System.out.println(weaponOption.getName() + " with a damage of " + weaponOption.getDamage());
+                }
+                Scanner in = new Scanner(System.in);
+                String choice = in.nextLine();
+                for(Weapon choosenWeapon : ((Melee) fighter).getWeapons()){
+                    if(choice.equals(choosenWeapon.getName())){
+                        weapon = choosenWeapon;
+                        ((Melee) fighter).changeSelectedWeapon(weapon);
+                    }
+                }
+            }
+        }
+        if(fighter instanceof SpellCaster){
+            Staff staff = null;
+            while(staff == null){
+                for(Staff staffOption : ((SpellCaster) fighter).getStaffs()){
+                    System.out.println(staffOption.getName() + " with a damage of " + staffOption.getDamage());
+                }
+                Scanner in = new Scanner(System.in);
+                String choice = in.nextLine();
+                for(Staff choosenStaff : ((SpellCaster) fighter).getStaffs()){
+                    if(choice.equals(choosenStaff.getName())){
+                        staff = choosenStaff;
+                        ((SpellCaster) fighter).changeSelectedStaff(staff);
+                    }
+                }
+            }
+        }
+    }
+
+    public static HealingTools chooseHealingItem(Healer healer){
+        HealingTools choosenItem = null;
+        if(healer.getHealingItems().size() > 0){
+            while(choosenItem == null){
+                int optionNum = 1;
+                for(HealingTools healingItem : healer.getHealingItems()){
+                    System.out.println(optionNum + ". " + healingItem.getName() + " has a power to heal of " + healingItem.getPower());
+                    optionNum += 1;
+                }
+                Scanner in = new Scanner(System.in);
+                int choice = Integer.parseInt(in.nextLine());
+                if(choice > 0 && choice <= healer.getHealingItems().size()){
+                    choosenItem = healer.getHealingItems().get(choice - 1);
+                } else {
+                    System.out.println("Uppps wrong number please try again!");
+                }
+            }
+
+        } else {
+            System.out.println("UUpppps no more healing potion left....");
+        }
+        return choosenItem;
+    }
+
+
+    public static HealingTools randomPotionDrop(){
+        HealingTools loot = null;
+        if(Math.random() > 0.1){
+            loot = new HealingTools("Piton of Earth", new Random().nextInt(40 + 1) + 20);
+        }
+        return loot;
+    }
+
+    public static Weapon randomWeaponDrop(){
+        Weapon loot = null;
+        if(Math.random() > 0.1){
+            loot = new Weapon("Axe of Death", new Random().nextInt(50 + 1) + 25);
+        }
+        return loot;
+    }
+
+    public static Staff randomStaffDrop(){
+        Staff loot = null;
+        if(Math.random() > 0.1){
+            loot = new Staff("Soul destroyer", new Random().nextInt(50 + 1) + 25);
+        }
+        return loot;
+    }
+
 
 
     public static void main(String[] args) {
@@ -126,7 +211,7 @@ public class Game {
         knight.addWeaponToWeapons(sword);
         knight.changeSelectedWeapon(sword);
         FireWizard fireWizard = new FireWizard("Flaming John", 100);
-        Staff fireStaff = new Staff("Burning Man's torch", 20);
+        Staff fireStaff = new Staff("Burning Man's torch", 45);
         fireWizard.addStaffToStaffs(fireStaff);
         fireWizard.changeSelectedStaff(fireStaff);
         Healer healer = new Healer("Healing Eugene", 100);
@@ -153,7 +238,8 @@ public class Game {
         System.out.println("Welcome to our new adventure");
         System.out.println("Please tell me your name:");
         String input = in.nextLine();
-        System.out.println("Nice to meet you " + input);
+        Player player = new Player(input, characters);
+        System.out.println("Nice to meet you " + player.getName() + "You have " + player.getWallet() + " Gold");
         System.out.println("Please meet with your brave fighters who will help you through this adventures");
         for(Being character : characters){
             if(character instanceof Melee){
@@ -180,29 +266,79 @@ public class Game {
             while(level1.getEnemies().size() > 0){
                 chooseCharacter(characters);
                 if(fighter instanceof IAttack){
-                    chooseEnemey(enemiesLevel1);
-                    ((IAttack) fighter).attack(target);
-                    System.out.println(target.getName() + "health went down to " + target.getCurrentHealth() );
-                    if(target.getCurrentHealth() <= 0){
-                        level1.getEnemies().remove(target);
-                        System.out.println(target.getName() + " is destroyed, well done");
+                    chooseWeapon(fighter);
+                    if(fighter instanceof Melee){
+                        chooseEnemey(enemiesLevel1);
+                        ((IAttack) fighter).attack(target);
+                        System.out.println(target.getName() + "health went down to " + target.getCurrentHealth() );
+                        if(target.getCurrentHealth() <= 0){
+                            level1.getEnemies().remove(target);
+                            System.out.println(target.getName() + " is destroyed, well done");
+                            Weapon loot = randomWeaponDrop();
+                            if(loot != null) {
+                                ((Melee) fighter).addWeaponToWeapons(loot);
+                                System.out.println(target.getName() + " dropped you something: " + loot.getName() + " with the damage of " + loot.getDamage());
+                            }
+                        }
                     }
+                    if(fighter instanceof SpellCaster){
+                        ((SpellCaster) fighter).attackGroup(enemiesLevel1);
+                        ArrayList<Enemy> enemiesCopy = new ArrayList<Enemy>(enemiesLevel1);
+                        for(Enemy enemy : enemiesCopy){
+                            System.out.println(enemy.getName() + "health went down to " + enemy.getCurrentHealth() );
+                            if(enemy.getCurrentHealth() <= 0){
+                                enemiesLevel1.remove(enemy);
+                                System.out.println(enemy.getName() + " is destroyed, well done");
+                                Staff loot = randomStaffDrop();
+                                if(loot != null) {
+                                    ((SpellCaster) fighter).addStaffToStaffs(loot);
+                                    System.out.println(enemy.getName() + " dropped you something: " + loot.getName() + " with the damage of " + loot.getDamage());
+                                }
+                            }
+                        }
+                        if(enemiesLevel1.size() > 0){
+                            target = enemiesLevel1.get(0);
+                        }
+                    }
+//                    if(enemiesLevel1.size() > 0){
+//                        for(Enemy enemy : enemiesLevel1){
+//                            if(enemy.getCurrentHealth() <= 0){
+//                                level1.getEnemies().remove(enemy);
+//                                System.out.println(enemy.getName() + " is destroyed, well done");
+//                                if(fighter instanceof Melee){
+//                                    Weapon loot = randomWeaponDrop();
+//                                    if(loot != null) {
+//                                        ((Melee) fighter).addWeaponToWeapons(loot);
+//                                        System.out.println(enemy.getName() + " dropped you something: " + loot.getName() + " with the damage of " + loot.getDamage());
+//                                    }
+//                                }
+//                                if(fighter instanceof SpellCaster){
+//                                    Staff loot = randomStaffDrop();
+//                                    if(loot != null) {
+//                                        ((SpellCaster) fighter).addStaffToStaffs(loot);
+//                                        System.out.println(enemy.getName() + " dropped you something: " + loot.getName() + " with the damage of " + loot.getDamage());
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
                 }
                 if(fighter instanceof Healer){
+                    HealingTools item = chooseHealingItem(((Healer)fighter));
                     chooseTargetToHeal(characters);
-                    if(((Healer)fighter).getHealingItems().size() > 0){
-                        ((Healer)fighter).heal(characterToHeal, (((Healer) fighter).getHealingItems().get(0)));
-                        System.out.println("You healed " + characterToHeal.getName() + " to " + characterToHeal.getCurrentHealth());
-                        System.out.println("You have " + ((Healer)fighter).getHealingItems().size() + " left");
-                    } else {
-                        System.out.println("UUpppsss no more healing potion left, you couldn't heal your team member");
+                    ((Healer) fighter).heal(characterToHeal, item);
+                    System.out.println("You healed " + characterToHeal.getName() + " to " + characterToHeal.getCurrentHealth());
+                    HealingTools loot = randomPotionDrop();
+                    if(loot != null){
+                        ((Healer) fighter).addHealingItem(loot);
+                        System.out.println("You got a drop: " + loot.getName() + " with healing power of " + loot.getPower());
                     }
-
+                    System.out.println("You have " + ((Healer)fighter).getHealingItems().size() + " left");
+                    target = enemiesLevel1.get(0);
                 }
-                if(level1.getEnemies().size() > 0){
-                    Enemy enemy = level1.getEnemies().get(0);
-                    enemy.attack(fighter);
-                    System.out.println(enemy.getName() + " took " + fighter.getName() + " health done to " + fighter.getCurrentHealth());
+                if(enemiesLevel1.size() > 0){
+                    target.attack(fighter);
+                    System.out.println(target.getName() + " took " + fighter.getName() + " health done to " + fighter.getCurrentHealth());
                     if(fighter.getCurrentHealth() <= 0){
                         level1.getPlayers().remove(fighter);
                         System.out.println(fighter.getName() + " has been destroyed!!!(so dead)");
@@ -213,11 +349,9 @@ public class Game {
                     break;
                 }
             }
-            System.out.println("You Won Congratulations");
+            player.increaseWallet(level1.getTreasure().getValue());
+            System.out.println("You Won Congratulations!!!  You won " + level1.getTreasure().getValue() + "!!! You have " + player.getWallet() + " Gold" );
             running = false;
         }
-
     }
-
-
 }
